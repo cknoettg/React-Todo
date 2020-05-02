@@ -32,16 +32,24 @@ class App extends React.Component {
   //functions: display list, input field, submit button, clear button
   //display list - that is in the JSX render
   //input field - in TodoList file
-
-  //submit function - button is in TodoForm
-  submitForm() {
-    return console.log("Test")
-  }
+  //submit function - offloaded to TodoForm
 
   //clear function - button is in TodoForm
   clearForm() {
     return console.log("Test")
   }
+
+  //add todo function
+  addTodo = todoName => {
+    const newTodo = {
+      task: todoName,
+      id: Date.now(),
+      purchased: false
+    };
+    this.setState({
+      todos: [...this.state.todos, newTodo]
+    });
+  };
 
   render() {
     return (

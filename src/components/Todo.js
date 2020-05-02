@@ -3,10 +3,10 @@ import React from 'react';
 const Todo = props => {
   return (
     <div
-      onClick={() => alert("Hello!")}
-        //props.handleToggleComplete(props.todo.id)}
+      onClick={() => props.toggleTodo(props.todo.id)}
     >
-      {/* {props.todo.task} */}
+      {/* Display task property */}
+      <p>{props.todo.task}</p>
     </div>
   );
 };
