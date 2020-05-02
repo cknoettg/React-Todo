@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
+import "./App.css";
 
 //enumerate the data
 const todoData = [
@@ -74,12 +75,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Todo List: MVP</h1>
-        <div>
+      <div class="App">
+        <h1>Todo List</h1>
+        <div className="top">
         <TodoList todos={this.state.todos} toggleTodo={this.toggleTodo} />
         </div>
-        <div>
+        <div className="bottom">
         <TodoForm addTodo={this.addTodo} toggleTodo={this.toggleTodo} />
         <button onClick={this.clearForm}>Clear Completed</button>
         </div>
