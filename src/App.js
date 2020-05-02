@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 
@@ -35,9 +36,11 @@ class App extends React.Component {
   //submit function - offloaded to TodoForm
 
   //clear function - button is in TodoForm
-  clearForm() {
-    return console.log("Test")
-  }
+  clearForm = () => {
+    this.setState({
+      todos: this.state.todos.filter(todo => !todo.purchased)
+    });
+  };
 
   //add todo function
   addTodo = todoName => {
@@ -51,12 +54,34 @@ class App extends React.Component {
     });
   };
 
+  //add toggle function
+  toggleTodo = id => {
+    console.log(id);
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            purchased: !todo.purchased
+          };
+        } else {
+          return todo;
+        }
+      })
+    });
+  };
+
   render() {
     return (
       <div>
         <h1>Todo List: MVP</h1>
-        <TodoList todos={this.state.todos} />
-        <TodoForm  />
+        <div>
+        <TodoForm addTodo={this.addTodo} />
+        </div>
+        <div>
+        <TodoList todos={this.state.todos} toggleTodo={this.toggleTodo} />
+        </div>
+        
         {/* Moved to Todo Form 
         <button>Add Todo</button>
         <button>Clear Completed</button>

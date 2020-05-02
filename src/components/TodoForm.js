@@ -1,4 +1,5 @@
 import React from 'react';
+//import addTodo from '../App';
 
 class TodoForm extends React.Component {
   constructor() {
@@ -30,8 +31,7 @@ class TodoForm extends React.Component {
           name="todo"
           onChange={this.handleChanges}
         />
-        <button onClick={this.submitForm}>Add Todo</button>
-        <button onClick={this.clearForm}>Clear Completed</button>
+        <button>Add Todo</button>
       </form>
     )};
 };
