@@ -20,9 +20,18 @@ class TodoForm extends React.Component {
     e.preventDefault();
     this.props.addTodo(this.state.todo);
   };
+
+  //clear function - button is in TodoForm
+  // clearForm = e => {
+  //   e.preventDefault();
+  //   this.setState({
+  //     todos: this.state.todos.filter(todo => !todo.completed)
+  //   });
+  // };
   
   render() {
     return (
+      <div>
       <form onSubmit={this.submitForm}>
         <input 
           type="text"
@@ -32,6 +41,7 @@ class TodoForm extends React.Component {
         />
         <button>Add Todo</button>
       </form>
+      </div>
     )};
 };
 

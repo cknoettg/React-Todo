@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
-import './styles.css';
 
 //enumerate the data
 const todoData = [
@@ -37,9 +36,10 @@ class App extends React.Component {
   //submit function - offloaded to TodoForm
 
   //clear function - button is in TodoForm
-  clearForm = () => {
+  clearForm = e => {
+    e.preventDefault();
     this.setState({
-      todos: this.state.todos.filter(todo => !todo.purchased)
+      todos: this.state.todos.filter(todo => !todo.completed)
     });
   };
 
@@ -48,7 +48,7 @@ class App extends React.Component {
     const newTodo = {
       task: todoName,
       id: Date.now(),
-      purchased: false
+      completed: false
     };
     this.setState({
       todos: [...this.state.todos, newTodo]
@@ -63,7 +63,7 @@ class App extends React.Component {
         if (todo.id === id) {
           return {
             ...todo,
-            purchased: !todo.purchased
+            completed: !todo.completed
           };
         } else {
           return todo;
@@ -77,16 +77,12 @@ class App extends React.Component {
       <div>
         <h1>Todo List: MVP</h1>
         <div>
-        <TodoForm addTodo={this.addTodo} />
-        </div>
-        <div>
         <TodoList todos={this.state.todos} toggleTodo={this.toggleTodo} />
         </div>
-        
-        {/* Moved to Todo Form 
-        <button>Add Todo</button>
-        <button>Clear Completed</button>
-        */}
+        <div>
+        <TodoForm addTodo={this.addTodo} toggleTodo={this.toggleTodo} />
+        <button onClick={this.clearForm}>Clear Completed</button>
+        </div>
       </div>
     );
   }
