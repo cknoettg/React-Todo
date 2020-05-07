@@ -1,19 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 import "./App.css";
 
+//avoids problem with Date.now leading to non-unique id's
+let randomizer = () => Date.now().toString(36) + Math.random().toString(36).substr(2);
 //enumerate the data
 const todoData = [
   {
     task: 'Organize Garage',
-    id: Date.now(),
+    id: randomizer(),
     completed: false
   },
   {
     task: 'Bake Cookies',
-    id: Date.now(),
+    id: randomizer(),
     completed: false
   }
 ];
@@ -48,7 +49,7 @@ class App extends React.Component {
   addTodo = todoName => {
     const newTodo = {
       task: todoName,
-      id: Date.now(),
+      id: randomizer(),
       completed: false
     };
     this.setState({
@@ -75,7 +76,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div class="App">
+      <div className="App">
         <h1>Todo List</h1>
         <div className="top">
         <TodoList todos={this.state.todos} toggleTodo={this.toggleTodo} />
